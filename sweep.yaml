@@ -1,0 +1,6 @@
+program: unet_with_custom_weight.py
+method: grid
+metric:
+  name: valid_accuracy
+  goal: maximize
+parameters: {}

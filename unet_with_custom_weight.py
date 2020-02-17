@@ -32,15 +32,21 @@ from skimage.filters import threshold_otsu, gaussian
 import wandb
 #wandb.init(project = "netra")
 
-os.environ['WANDB_API_KEY'] = "my_api_key"
+os.environ['WANDB_API_KEY'] = "344338e09b93dd41994593b9dd0fbcbe9407580c"
 
-os.environ['WANDB_MODE'] = "dryrun"
+#os.environ['WANDB_MODE'] = "dryrun"
 # In[ ]:
-
-wandb.init(project = "netra")
-path_dir = '/scratch/netra/Datasets/Drive_Dataset/'
-
-
+hyperparameter_defaults = dict(
+    dropout = 0.5
+    batch_size = 5
+    learning_rate = 0.001
+    epochs = 2
+)
+wandb.init(config = hyperparameter_defaults,project = "netra_uno")
+config = wandb.config
+#path_dir = '/scratch/netra/Datasets/Drive_Dataset/'
+ 
+path_dir = 'C:/Experiments/Datasets/Drive_Dataset'
 # In[ ]:
 
 
@@ -895,7 +901,7 @@ def train(n_epochs, loaders, model, optimizer, criterion, use_cuda):
             test_iou
             ))
         # Wandb Log
-        wandb.log({'epoch':epoch,'training_loss':train_loss,'validation_loss':valid_loss,'test_accuracy': test_iou})
+        wandb.log({'epoch':epoch,'training_loss':train_loss,'validation_loss':valid_loss,'valid_accuracy': test_iou})
        # wandb.log('epoch':epoch,'training_loss':valid_loss)
         ## TODO: save the model if validation loss has decreased
         if valid_loss <= valid_loss_min:
