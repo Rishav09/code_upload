@@ -3,4 +3,11 @@ method: grid
 metric:
   name: valid_accuracy
   goal: maximize
-parameters: {}
+parameters: 
+  dropout:
+    values : [0.1, 0.2, 0.4, 0.5, 0.7]
+  
+  learning_rate:
+    values: [0.001, 0.01, 0.0001]
+  epochs:
+    value: 15 

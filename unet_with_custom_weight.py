@@ -36,14 +36,9 @@ os.environ['WANDB_API_KEY'] = "344338e09b93dd41994593b9dd0fbcbe9407580c"
 
 #os.environ['WANDB_MODE'] = "dryrun"
 # In[ ]:
-hyperparameter_defaults = dict(
-    dropout = 0.5
-    batch_size = 5
-    learning_rate = 0.001
-    epochs = 2
-)
-wandb.init(config = hyperparameter_defaults,project = "netra_uno")
-config = wandb.config
+
+wandb.init(project = "netra_uno")
+# config = wandb.config
 #path_dir = '/scratch/netra/Datasets/Drive_Dataset/'
  
 path_dir = 'C:/Experiments/Datasets/Drive_Dataset'
@@ -907,8 +902,8 @@ def train(n_epochs, loaders, model, optimizer, criterion, use_cuda):
         if valid_loss <= valid_loss_min:
             print('Validation loss decreased ({:.6f} --> {:.6f}).  Saving model ...'.format(
             valid_loss_min,valid_loss))
-            torch.save(model.state_dict(), '/home/rxs1576/Experiments/triton_models/dict_model_2.pt')
-            torch.save(model,'/home/rxs1576/Experiments/triton_models/com_model_2.pt')
+            torch.save(model.state_dict(), 'dict_model_sample.pt')
+            torch.save(model,'com_model_sample.pt')
             valid_loss_min = valid_loss
     # return trained model
     return model
